@@ -1,0 +1,80 @@
+﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* font-family: 'Source Sans Pro', sans-serif; */
+
+* {
+    font-family: 'Arvo', serif;
+    font-family: 'Courier Prime', monospace;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F5D6BA;
+}
+
+.main-body {
+    min-height: 85vh;
+}
+
+.admin-body {
+    min-height: 75vh;
+}
+
+.account-ref {
+    text-decoration: none;
+}
+
+.account-img {
+    width: 50px;
+}
+
+.admin-nav {
+    background: #A40E4C;
+    width: 100%;
+}
+
+a, .btn-link {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.content {
+    padding-top: 1.1rem;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
