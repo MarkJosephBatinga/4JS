@@ -1,0 +1,33 @@
+﻿@page "/user/login"
+@layout UserLoginLayout
+
+<section class="main-body px-3 px-md-5 my-3 d-flex align-items-center">
+    <div class="login-container row">
+        <h3 class="login-title">Buy Your Favorite <span class="change-color">Books</span> Now!!!!</h3>
+        <div class="title-box col-xl d-flex flex-column justify-content-center align-items-center">
+
+            <img src="./css/images/Login.png" alt="Login" class="log-img">
+        </div>
+        <div class=" col-xl d-flex justify-content-center align-items-center">
+            <div class="form-box d-flex flex-column align-items-center">
+                <form action="" class="form-wrap">
+                    <h3 class="form-title">Reader Login</h3>
+                    <p class="form-label">EMAIL</p>
+                    <input class="form-input" type="email" name="email" placeholder="email">
+                    <p class="form-label">PASSWORD</p>
+                    <input class="form-input" type="password" name="password" placeholder="password">
+                    <div class="submit-box d-flex justify-content-center">
+                        <button type="submit" class="trans-btn">Login</button>
+                    </div>
+                </form>
+                <div class="signup-box d-flex align-items-center justify-content-center mt-5 px-md-5">
+                    <p class="signup-label">Don't have an account? <a href="#" class="signup-ref">Click here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+
+}

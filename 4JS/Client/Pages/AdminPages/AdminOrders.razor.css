@@ -1,0 +1,304 @@
+﻿.admin-body {
+    height: 85vh;
+}
+
+.title-img {
+    width: 80px;
+}
+
+.search-btn {
+    width: 30px;
+}
+
+.title-text {
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 3.5rem;
+    letter-spacing: 0.05em;
+    color: #A40E4C;
+}
+
+.search-input {
+    background: #F5D6BA;
+    border: 2px solid #A40E4C;
+    border-radius: 10px;
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    letter-spacing: 0.05em;
+    color: #A40E4C;
+}
+
+.submit-btn {
+    background: #F49D6E;
+    border-radius: 10px;
+    border: none;
+    padding: 7px 10px;
+}
+
+.btn-cancel {
+    border: none;
+    background: #F49D6E;
+    border-radius: 20px;
+    padding: 10px 12px;
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2rem;
+    padding: 5px 20px;
+    color: #A40E4C;
+}
+
+    .btn-cancel:hover {
+        background: #A40E4C;
+        color: #F49D6E;
+    }
+
+@media screen and (max-width: 1000px) {
+    .title-img {
+        width: 40px;
+    }
+
+    .title-text {
+        font-size: 1.8rem;
+        letter-spacing: 0.05em;
+    }
+
+    .search-input {
+        font-size: .8rem;
+        padding: 2px 5px;
+        letter-spacing: 0;
+    }
+
+    .submit-btn {
+        background: #F49D6E;
+        border-radius: 10px;
+        border: none;
+        padding: 3px 8px;
+    }
+
+    .search-btn {
+        width: 25px;
+    }
+}
+
+
+.trans-btn {
+    border: 3px solid #F5D6BA;
+    border-radius: 10px;
+    background-color: transparent;
+    padding: 5px 30px;
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #F5D6BA;
+}
+
+    .trans-btn:hover {
+        background-color: #A40E4C;
+        border: 3px solid #A40E4C;
+    }
+
+
+/* rable */
+/*TABLE STARTS HERE*/
+
+.studentable-s2 {
+    margin: 50px 30px 40px 30px;
+    align-items: center;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 23px;
+    min-width: 400px;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    font-family: 'Arvo';
+}
+
+    .styled-table thead tr {
+        background-color: #A40E4C;
+        font-family: 'Arvo';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 1.7rem;
+        text-align: center;
+        letter-spacing: 0.05em;
+        color: #F5D6BA;
+        border: 2px solid #F5D6BA;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+
+    .styled-table tbody tr {
+        background-color: #F49D6E;
+        border-bottom: 2px solid #F5D6BA;
+        color: #A40E4C;
+        text-align: center;
+        font-family: 'Arvo';
+        font-style: normal;
+        font-weight: 600;
+    }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #F49D6E;
+            color: #A40E4C;
+            text-align: center;
+            font-family: 'Arvo';
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #F5D6BA;
+        }
+
+        .styled-table tbody tr.active-row {
+            color: #A40E4C;
+        }
+
+@media (max-width: 768px), (max-width: 1600px) {
+    thead {
+        display: none;
+    }
+
+    td {
+        display: block;
+    }
+
+        td:first-child {
+            background-color: #A40E4C;
+            color: #F5D6BA;
+            font-weight: 700;
+        }
+
+    td {
+        text-align: right;
+        font-weight: 600;
+    }
+
+        td::before {
+            float: left;
+            font-weight: 700;
+            color: #A40E4C;
+        }
+}
+
+/*TABLE ENDS HERE*/
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    #myImg:hover {
+        opacity: 0.7;
+    }
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content,
+#caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {
+        -webkit-transform: scale(0)
+    }
+
+    to {
+        -webkit-transform: scale(1)
+    }
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+    .modal-content {
+        width: 100%;
+    }
+}

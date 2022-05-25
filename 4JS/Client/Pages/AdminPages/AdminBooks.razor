@@ -1,0 +1,51 @@
+﻿@page "/admin/books"
+@layout UserAuthLayout
+
+<section class="admin-body px-3 px-md-5 my-3">
+    <div class="top-container d-flex align-items-center px-lg-5">
+        <div class="left-box d-flex align-items-center me-auto">
+            <a class="btn-cancel" href="/admin/dashboard">Cancel</a>
+        </div>
+        <div class="right-box">
+            <h3 class="title-text">Books</h3>
+        </div>
+    </div>
+    <div class="lower-container">
+        <div class="table-box">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mark Joseph Batinga</td>
+                        <td>Astrazeniza</td>
+                        <td>San Narciso, Zambales</td>
+                        <td>
+                            <button type="button" class="trans-btn">Update</button>
+                            <button type="button" class="trans-btn">Delete</button>
+                        </td>
+                    </tr>
+                    <tr class="active-row">
+                        <td>Charisse Viste</td>
+                        <td>Pfizer</td>
+                        <td>Agoo, La Union</td>
+                        <td>
+                            <button type="button" class="trans-btn">Update</button>
+                            <button type="button" class="trans-btn">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@code {
+
+}

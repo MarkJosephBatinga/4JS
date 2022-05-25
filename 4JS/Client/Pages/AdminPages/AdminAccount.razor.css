@@ -1,0 +1,150 @@
+﻿.login-container {
+    width: 100%;
+    height: max-content;
+}
+
+.login-title {
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 3.5rem;
+    line-height: 53px;
+    text-align: center;
+    color: #2C2C54;
+    margin-bottom: 20px;
+}
+
+.acc-img {
+    width: 100%;
+}
+
+.change-color {
+    color: #A40E4C;
+}
+
+.form-box {
+    width: 80%;
+    background: #A40E4C;
+    box-shadow: 4px 4px 4px #000000;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.form-wrap {
+    width: 80%;
+}
+
+.form-title {
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.2rem;
+    line-height: 53px;
+    text-align: center;
+    letter-spacing: 3px;
+    margin-top: 40px;
+    color: #F5D6BA;
+}
+
+.form-label {
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 30px;
+    color: #F5D6BA;
+    margin-top: 50px;
+}
+
+.form-input {
+    width: 100%;
+    color: #ACC3A6;
+    border: none;
+    text-indent: 2px;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 30px;
+}
+
+.submit-box {
+    margin-top: 60px;
+}
+
+.trans-btn {
+    border: 3px solid #F5D6BA;
+    border-radius: 10px;
+    background-color: transparent;
+    padding: 5px 15%;
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #F5D6BA;
+}
+
+    .trans-btn:hover {
+        background-color: #F5D6BA;
+        color: #2C2C54;
+    }
+
+.signup-box {
+    width: 100%;
+}
+
+.signup-img {
+    width: 40%;
+}
+
+.signup-label {
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 30px;
+    text-align: right;
+    color: #F5D6BA;
+}
+
+.user-btn {
+    border: none;
+    background: #F49D6E;
+    border-radius: 20px;
+    padding: 10px 12px;
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #2C2C54;
+}
+
+    .user-btn:hover {
+        background: #F5D6BA;
+        color: #F49D6E;
+    }
+
+@media screen and (max-width: 1000px) {
+    .fam-img {
+        width: 100%;
+    }
+
+    .form-wrap {
+        width: 100%;
+    }
+
+    .form-box {
+        width: 100%;
+    }
+
+    .signup-label {
+        font-size: .9rem;
+    }
+
+    .signup-ref {
+        font-size: .9rem;
+    }
+}

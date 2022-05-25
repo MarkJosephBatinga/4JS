@@ -1,0 +1,94 @@
+﻿.admin-body {
+    height: 85vh;
+}
+
+.upper-container {
+    width: 100%;
+}
+
+.title {
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 4rem;
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: #F49D6E;
+    margin: 40px 0px;
+}
+
+    .title > span {
+        color: #F5D6BA;
+    }
+
+.support-img {
+    width: 30%;
+}
+
+.stat-card {
+    height: 40vh;
+    width: 80%;
+    background: #A40E4C;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.stat-img {
+    width: 150px;
+}
+
+.card-title {
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 30px;
+    color: #F5D6BA;
+}
+
+.stats-number {
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3.8rem;
+    line-height: 60px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: #F49D6E;
+}
+
+.btn-goto {
+    border: none;
+    background: #F49D6E;
+    border-radius: 20px;
+    padding: 10px 12px;
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #2C2C54;
+}
+
+    .btn-goto:hover {
+        background: #F5D6BA;
+        color: #F49D6E;
+    }
+
+@media screen and (max-width: 1000px) {
+    .title {
+        font-size: 3rem;
+        margin-top: 30px;
+    }
+
+    .stat-card {
+        width: 100%;
+    }
+
+    .card-title {
+        font-size: 1.4rem;
+    }
+
+    .stats-number {
+        font-size: 3.4rem;
+    }
+}

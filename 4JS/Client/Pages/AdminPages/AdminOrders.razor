@@ -1,0 +1,50 @@
+﻿@page "/admin/orders"
+@layout UserAuthLayout
+
+<section class="admin-body px-3 px-md-5 my-3">
+    <div class="top-container d-flex align-items-center px-lg-5">
+        <div class="left-box d-flex align-items-center me-auto">
+            <a class="btn-cancel" href="/admin/dashboard">Cancel</a>
+        </div>
+        <div class="right-box">
+            <h3 class="title-text">Orders</h3>
+        </div>
+    </div>
+    <div class="lower-container">
+        <div class="table-box">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Address</th>
+                        <th>Book Name</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Batinga, Mark Joseph</td>
+                        <td>09501109163</td>
+                        <td>San Narciso, Zambales</td>
+                        <td>20</td>
+                        <td>
+                            <button type="button" class="trans-btn">Update</button>
+                            <button type="button" class="trans-btn">Delete</button>
+                        </td>
+                    </tr>
+                    <tr class="active-row">
+                        <td>Viste, Charisse</td>
+                        <td>09501109163</td>
+                        <td>San Narciso, Zambales</td>
+                        <td>21</td>
+                        <td>
+                            <button type="button" class="trans-btn">Update</button>
+                            <button type="button" class="trans-btn">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
