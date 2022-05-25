@@ -1,3 +1,6 @@
+using _4JS.Client.Services.AdminService;
+using _4JS.Client.Services.LoginService;
+using _4JS.Client.Services.UserService;
 using Blazored.LocalStorage;
 using Blazored.Toast;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -5,12 +8,13 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using SPMSOJT.Client;
+using _4JS.Client;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace _4JS.Client
 {
@@ -27,6 +31,9 @@ namespace _4JS.Client
             builder.Services.AddOptions();
             builder.Services.AddAuthorizationCore();
             builder.Services.AddBlazoredToast();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<ILoginService, LoginService>();
+            builder.Services.AddScoped<IAdminService, AdminService>();
 
             builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
             await builder.Build().RunAsync();
