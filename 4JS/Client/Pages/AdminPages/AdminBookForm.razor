@@ -1,0 +1,58 @@
+﻿@page "/admin/books/form"
+@layout AdminAuthLayout
+
+    <section class="admin-body px-3 px-md-5 my-3">
+        <div class="top-container px-lg-5">
+            <h3 class="title-text text-center">Books</h3>
+        </div>
+        <div class="lower-container mt-5">
+            <div class="form-box">
+                <form action="">
+                    <h4 class="group-title">Book Cover</h4>
+                    <div class="img-container row d-flex justify-content-center">
+                        <div class="col-3">
+                            <img src="./css/images/book.png" alt="" class="book-img">
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4  d-flex flex-column align-items-center">
+                        <div class="col-6">
+                            <p class="form-label">Select Image</p>
+                            <input type="file" name="" class="form-input" id="">
+                        </div>
+                    </div>
+                    <h4 class="group-title">Book Info</h4>
+                    <div class="form-group row mb-4">
+                        <div class="col-6">
+                            <p class="form-label">Book Name</p>
+                            <input type="text" name="" placeholder="Alusiis" class="form-input">
+                        </div>
+                        <div class="col-6">
+                            <p class="form-label">Author</p>
+                            <input type="text" name="" placeholder="San Narciso" class="form-input">
+                        </div>
+                        <div class="col-6">
+                            <p class="form-label">Price</p>
+                            <input type="text" name="" placeholder="Zambales" class="form-input">
+                        </div>
+                        <div class="col-6">
+                            <p class="form-label">Category</p>
+                            <select name="" class="form-input">
+                                <option value="">Action and Adventure</option>
+                                <option value="">Classics</option>
+                                <option value="">Horror</option>
+                                <option value="">Romance</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="submit-box d-flex justify-content-end">
+                        <a href="" type="button" class="cancel-btn mx-3">Cancel</a>
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    @code {
+
+    }
