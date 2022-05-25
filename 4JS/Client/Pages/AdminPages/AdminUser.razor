@@ -1,5 +1,7 @@
 ﻿@page "/admin/user"
 @layout AdminAuthLayout
+@attribute [Authorize(Roles = "admin")]
+@inject IUserService UserService
 
 <section class="admin-body px-3 px-md-5 my-3">
     <div class="top-container d-flex align-items-center px-lg-5">
@@ -22,22 +24,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Batinga</td>
-                        <td>Mark Joseph</td>
-                        <td>batingamark@gmail.com</td>
-                        <td>
-                            <button type="button" class="trans-btn">Delete</button>
-                        </td>
-                    </tr>
-                    <tr class="active-row">
-                        <td>Viste</td>
-                        <td>Charisse</td>
-                        <td>CatLictaoa@gmail.com</td>
-                        <td>
-                            <button type="button" class="trans-btn">Delete</button>
-                        </td>
-                    </tr>
+                    @foreach (var user in Users)
+                    {
+                        <tr>
+                            <td>@user.LastName</td>
+                            <td>@user.FirstName</td>
+                            <td>@user.email</td>
+                            <td>
+                                <button type="button" class="trans-btn">Delete</button>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -45,5 +42,10 @@
 </section>
 
 @code {
+    List<User> Users = new List<User>();
 
+    protected async override Task OnInitializedAsync()
+    {
+        Users = await UserService.GetAllUser();
     }
+}

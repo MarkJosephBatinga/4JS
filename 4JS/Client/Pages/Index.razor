@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject ILocalStorageService LocalStorage
 
 <div class="container-fluid body-container">
     <div class="title-box row">
@@ -67,3 +68,12 @@
         </div>
     </div>
 </div>
+
+@code {
+
+    protected async override Task OnInitializedAsync()
+    {
+        await LocalStorage.RemoveItemAsync("username");
+        await LocalStorage.RemoveItemAsync("role");
+    }
+}

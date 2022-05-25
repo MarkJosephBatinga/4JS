@@ -1,5 +1,6 @@
 ﻿@page "/admin/orders"
 @layout AdminAuthLayout
+@attribute [Authorize(Roles = "admin")]
 
 <section class="admin-body px-3 px-md-5 my-3">
     <div class="top-container d-flex align-items-center px-lg-5">

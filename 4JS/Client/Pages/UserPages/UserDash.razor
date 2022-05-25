@@ -1,5 +1,6 @@
 ﻿@page "/user/dashboard"
 @layout UserAuthLayout
+@attribute [Authorize(Roles = "user")]
 
 <section class="main-body px-3 px-md-5 my-3">
     <div class="genre-container m-4">
