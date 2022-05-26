@@ -2,6 +2,7 @@
 @layout AdminAuthLayout
 @attribute [Authorize(Roles = "admin")]
 @inject IUserService UserService
+@inject IToastService Toast
 
 <section class="admin-body px-3 px-md-5 my-3">
     <div class="top-container d-flex align-items-center px-lg-5">
@@ -31,7 +32,7 @@
                             <td>@user.FirstName</td>
                             <td>@user.email</td>
                             <td>
-                                <button type="button" class="trans-btn">Delete</button>
+                                <button type="button" class="trans-btn" @onclick="() => OnDelete(user)">Delete</button>
                             </td>
                         </tr>
                     }
@@ -47,5 +48,12 @@
     protected async override Task OnInitializedAsync()
     {
         Users = await UserService.GetAllUser();
+    }
+
+    private async Task OnDelete(User user)
+    {
+        var result = await UserService.DeleteUser(user);
+        Toast.ShowSuccess("User Successfully Deleted", "Deleted");
+        Users = result;
     }
 }

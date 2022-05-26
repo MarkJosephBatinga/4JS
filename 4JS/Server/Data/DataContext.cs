@@ -16,6 +16,7 @@ namespace _4JS.Server.Data
 
         public DbSet<User> user_info { get; set; }
         public DbSet<Book> book_info { get; set; }
+        public DbSet<Order> order_info { get; set; }
         public DbSet<Admin> admin_info { get; set; }
     }
 }

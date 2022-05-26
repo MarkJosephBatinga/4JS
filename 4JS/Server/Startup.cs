@@ -13,6 +13,7 @@ using _4JS.Server.Services.AdminService;
 using _4JS.Server.Services.LoginService;
 using _4JS.Server.Services.UserService;
 using _4JS.Server.Services.BookService;
+using _4JS.Server.Services.OrderService;
 
 namespace _4JS.Server
 {
@@ -36,6 +37,7 @@ namespace _4JS.Server
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ILoginService, LoginService>();

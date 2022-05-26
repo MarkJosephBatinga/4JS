@@ -15,6 +15,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using _4JS.Client.Services.BookService;
+using _4JS.Client.Services.OrderService;
 
 namespace _4JS.Client
 {
@@ -35,6 +36,7 @@ namespace _4JS.Client
             builder.Services.AddScoped<ILoginService, LoginService>();
             builder.Services.AddScoped<IAdminService, AdminService>();
             builder.Services.AddScoped<IBookService, BookService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
 
             builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
             await builder.Build().RunAsync();

@@ -2,6 +2,9 @@
 @layout UserAuthLayout
 @attribute [Authorize(Roles = "user")]
 @inject IBookService BookService
+@inject IOrderService OrderService
+@inject ILoginService LoginService
+@inject ILocalStorageService LocalStorage
 @inject IToastService Toast
 
 
@@ -20,7 +23,7 @@
                             <p class="category">@book.Category</p>
                             <div class="order-box mt-3 d-flex align-items-center justify-content-between">
                                 <p class="price">@book.Price</p>
-                                <button class="btn-order">Order</button>
+                                <button class="btn-order" @onclick="() => OnOrder(book)">Order</button>
                             </div>
                         </div>
                     </div>
@@ -42,7 +45,7 @@
                             <p class="category">@book.Category</p>
                             <div class="order-box mt-3 d-flex align-items-center justify-content-between">
                                 <p class="price">@book.Price</p>
-                                <button class="btn-order">Order</button>
+                                <button class="btn-order" @onclick="() => OnOrder(book)">Order</button>
                             </div>
                         </div>
                     </div>
@@ -64,7 +67,7 @@
                             <p class="category">@book.Category</p>
                             <div class="order-box mt-3 d-flex align-items-center justify-content-between">
                                 <p class="price">@book.Price</p>
-                                <button class="btn-order">Order</button>
+                                <button class="btn-order" @onclick="() => OnOrder(book)">Order</button>
                             </div>
                         </div>
                     </div>
@@ -86,7 +89,7 @@
                             <p class="category">@book.Category</p>
                             <div class="order-box mt-3 d-flex align-items-center justify-content-between">
                                 <p class="price">@book.Price</p>
-                                <button class="btn-order">Order</button>
+                                <button class="btn-order" @onclick="() => OnOrder(book)">Order</button>
                             </div>
                         </div>
                     </div>
@@ -101,6 +104,7 @@
     List<Book> Horror = new List<Book>();
     List<Book> Romance = new List<Book>();
     List<Book> Classic = new List<Book>();
+    Order order = new Order();
 
     protected async override Task OnInitializedAsync()
     {
@@ -110,5 +114,24 @@
         Classic = Books.Where(b => b.Category == "Classics").ToList();
         Horror = Books.Where(b => b.Category == "Horror").ToList();
         Romance = Books.Where(b => b.Category == "Romance").ToList();
+    }
+
+    private async Task OnOrder(Book book)
+    {
+        var username = await LocalStorage.GetItemAsStringAsync("username");
+        var user = await LoginService.GetUser(username);
+        if(user != null)
+        {
+            order.FullName = $"{user.FirstName} {user.LastName}";
+            order.Address = user.Address;
+            order.BookName = book.BookTitle;
+            order.Price = book.Price;
+
+            var result = await OrderService.AddOrder(order);
+            if (result != null)
+            {
+                Toast.ShowSuccess($"{book.BookTitle} Successfully Ordered", "Ordered");
+            }
+        }
     }
 }

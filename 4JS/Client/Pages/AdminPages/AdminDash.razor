@@ -3,6 +3,7 @@
 @attribute [Authorize(Roles = "admin")]
 @inject IUserService UserService
 @inject IBookService BookService
+@inject IOrderService OrderService
 
 <section class="admin-body px-3 px-md-5 my-3">
     <div class="top-container row mb-5">
@@ -33,7 +34,7 @@
 
             <div class="stat-card col my-4 d-flex flex-column align-items-center justify-content-between">
                 <h4 class="card-title">All Orders</h4>
-                <h3 class="stats-number">150, 000</h3>
+                <h3 class="stats-number">@Orders.Count</h3>
                 <div class="btn-box w-100 d-flex justify-content-end">
                     <a class="btn-goto" href="/admin/orders">Go to Orders</a>
                 </div>
@@ -46,10 +47,12 @@
 @code {
     List<User> Users = new List<User>();
     List<Book> Books = new List<Book>();
+    List<Order> Orders = new List<Order>();
 
     protected async override Task OnInitializedAsync()
     {
         Users = await UserService.GetAllUser();
         Books = await BookService.GetAllBook();
+        Orders = await OrderService.GetAllOrder();
     }
 }

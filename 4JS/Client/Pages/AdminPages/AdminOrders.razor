@@ -1,6 +1,8 @@
 ﻿@page "/admin/orders"
 @layout AdminAuthLayout
 @attribute [Authorize(Roles = "admin")]
+@inject IOrderService OrderService
+@inject IToastService Toast
 
 <section class="admin-body px-3 px-md-5 my-3">
     <div class="top-container d-flex align-items-center px-lg-5">
@@ -18,34 +20,50 @@
                     <tr>
                         <th>Full Name</th>
                         <th>Address</th>
-                        <th>Book Name</th>
+                        <th>Book Title</th>
                         <th>Price</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Batinga, Mark Joseph</td>
-                        <td>09501109163</td>
-                        <td>San Narciso, Zambales</td>
-                        <td>20</td>
-                        <td>
-                            <button type="button" class="trans-btn">Update</button>
-                            <button type="button" class="trans-btn">Delete</button>
-                        </td>
-                    </tr>
-                    <tr class="active-row">
-                        <td>Viste, Charisse</td>
-                        <td>09501109163</td>
-                        <td>San Narciso, Zambales</td>
-                        <td>21</td>
-                        <td>
-                            <button type="button" class="trans-btn">Update</button>
-                            <button type="button" class="trans-btn">Delete</button>
-                        </td>
-                    </tr>
+                    @foreach (var order in Orders)
+                    {
+                        <tr>
+                            <td>@order.FullName</td>
+                            <td>@order.Address</td>
+                            <td>@order.BookName</td>
+                            <td>@order.Price</td>
+                            <td>
+                                <button type="button" class="trans-btn" @onclick="() => OnComplete(order)">Completed</button>
+                                <button type="button" class="trans-btn" @onclick="() => OnDelete(order)">Delete</button>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
     </div>
 </section>
+
+@code {
+    List<Order> Orders = new List<Order>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        Orders = await OrderService.GetAllOrder();
+    }
+
+    private async Task OnDelete(Order order)
+    {
+        var result = await OrderService.DeleteOrder(order);
+        Toast.ShowSuccess("Order Successfully Deleted", "Deleted");
+        Orders = result;
+    } 
+    
+    private async Task OnComplete(Order order)
+    {
+        var result = await OrderService.DeleteOrder(order);
+        Toast.ShowSuccess("Order Successfully Completed", "Completed");
+        Orders = result;
+    }
+}
