@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using _4JS.Server.Services.AdminService;
 using _4JS.Shared;
 
-namespace VMS.Server.Controllers
+namespace _4JS.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -3,6 +3,10 @@
 @layout UserAuthLayout
 @inject ILocalStorageService LocalStorage
 @inject ILoginService LoginService
+@inject IUserService UserService
+@inject NavigationManager NavManager
+@inject AuthenticationStateProvider Authentication
+@inject IToastService Toast
 
 <section class="main-body px-3 px-md-5 my-3">
     <div class="login-container row">
@@ -17,7 +21,7 @@
                     <p class="form-label">Full Name</p>
                     <h3 class="form-input">@user.FirstName @user.LastName</h3>
                     <p class="form-label">Address</p>
-                    <h3 class="form-input">@user.Address</h3> 
+                    <h3 class="form-input">@user.Address</h3>
                     <p class="form-label">Phone Number</p>
                     <h3 class="form-input">@user.Phone</h3>
                     <p class="form-label">EMAIL</p>
@@ -26,15 +30,15 @@
                     <h3 class="form-input">******</h3>
                 </div>
                 <div class="signup-box d-flex align-items-center justify-content-center mt-5 px-md-5">
-                    <button class="user-btn me-4">Update</button>
-                    <button class="user-btn">Delete</button>
+                    <button class="user-btn me-4" @onclick="OnUpdate">Update</button>
+                    <button class="user-btn" @onclick="OnDelete">Delete</button>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-@code {       
+@code {
 
     User user = new User();
 
@@ -42,5 +46,20 @@
     {
         var username = await LocalStorage.GetItemAsStringAsync("username");
         user = await LoginService.GetUser(username);
+    }
+
+    private void OnUpdate()
+    {
+        NavManager.NavigateTo("/user/account/update");
+    }
+
+    private async Task OnDelete()
+    {
+        await UserService.DeleteUser(user);
+        Toast.ShowSuccess("Account Successfully Deleted", "Deleted");
+        await LocalStorage.RemoveItemAsync("username");
+        await LocalStorage.RemoveItemAsync("role");
+        await Authentication.GetAuthenticationStateAsync();
+        NavManager.NavigateTo("");
     }
 }

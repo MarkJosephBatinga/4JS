@@ -1,0 +1,76 @@
+﻿@page "/user/account/update"
+@layout UserAuthLayout
+@attribute [Authorize(Roles = "user")]
+@inject NavigationManager NavManager
+@inject IUserService UserService
+@inject ILoginService LoginService
+@inject ILocalStorageService LocalStorage
+@inject AuthenticationStateProvider AuthProvider
+@inject IToastService Toast
+@inject IJSRuntime JsRun
+
+<section class="main-body px-3 px-md-5 my-3 d-flex align-items-center">
+    <div class="login-container row">
+        <h3 class="login-title">Update Reader Account!</h3>
+        <div class="title-box col-xl d-flex flex-column justify-content-center align-items-center">
+
+            <img src="./css/images/updateacc.png" alt="Update" class="log-img">
+        </div>
+        <div class=" col-xl d-flex justify-content-center align-items-center">
+            <div class="form-box d-flex flex-column">
+                <EditForm Model="user" OnValidSubmit="OnUpdate">
+                    <DataAnnotationsValidator></DataAnnotationsValidator>
+                    <h3 class="form-title text-center">Reader Sign Up</h3>
+
+                    <p class="form-label">First Name</p>
+                    <ValidationMessage For="() => user.FirstName" />
+                    <input class="form-input w-100" type="text" name="first_name" @bind-value="user.FirstName" placeholder="first name">
+
+                    <p class="form-label">Last Name</p>
+                    <ValidationMessage For="() => user.LastName" />
+                    <input class="form-input" type="text" name="last_name" @bind-value="user.LastName" placeholder="last name">
+
+                    <p class="form-label">Address</p>
+                    <ValidationMessage For="() => user.Address" />
+                    <input class="form-input w-100" type="text" name="address" @bind-value="user.Address" placeholder="Brgy, Town, Province">
+
+                    <p class="form-label">Phone Number</p>
+                    <ValidationMessage For="() => user.Phone" />
+                    <input class="form-input" type="text" name="phone" @bind-value="user.Phone" placeholder="09xxxxxxxx">
+
+                    <p class="form-label">EMAIL</p>
+                    <ValidationMessage For="() => user.email" />
+                    <input class="form-input" type="email" name="email" @bind-value="user.email" placeholder="email">
+
+                    <p class="form-label">PASSWORD</p>
+                    <ValidationMessage For="() => user.password" />
+                    <input class="form-input" type="password" name="password" @bind-value="user.password" placeholder="password">
+
+                    <div class="submit-box d-flex justify-content-center">
+                        <button type="submit" class="trans-btn">Sign Up</button>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    User user = new User();
+
+    protected async override Task OnInitializedAsync()
+    {
+        var username = await LocalStorage.GetItemAsStringAsync("username");
+        user = await LoginService.GetUser(username);
+    }
+
+    private async Task OnUpdate()
+    {
+        var result = await UserService.UpdateUser(user);
+        if(result != null)
+        {
+            Toast.ShowSuccess("User Update Successfull", "Success");
+            NavManager.NavigateTo("/user/account");
+        }
+    }
+}

@@ -1,11 +1,15 @@
 ﻿@page "/admin/books"
 @layout AdminAuthLayout
 @attribute [Authorize(Roles = "admin")]
+@inject IBookService BookService
+@inject NavigationManager NavManager
+@inject IToastService Toast
 
 <section class="admin-body px-3 px-md-5 my-3">
     <div class="top-container d-flex align-items-center px-lg-5">
         <div class="left-box d-flex align-items-center me-auto">
             <a class="btn-cancel" href="/admin/dashboard">Cancel</a>
+            <a class="btn-cancel ms-5" href="/admin/books/form">Add Books</a>
         </div>
         <div class="right-box">
             <h3 class="title-text">Books</h3>
@@ -23,24 +27,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Mark Joseph Batinga</td>
-                        <td>Astrazeniza</td>
-                        <td>San Narciso, Zambales</td>
-                        <td>
-                            <button type="button" class="trans-btn">Update</button>
-                            <button type="button" class="trans-btn">Delete</button>
-                        </td>
-                    </tr>
-                    <tr class="active-row">
-                        <td>Charisse Viste</td>
-                        <td>Pfizer</td>
-                        <td>Agoo, La Union</td>
-                        <td>
-                            <button type="button" class="trans-btn">Update</button>
-                            <button type="button" class="trans-btn">Delete</button>
-                        </td>
-                    </tr>
+                    @foreach (var book in Books)
+                    {
+                        <tr>
+                            <td>@book.BookTitle</td>
+                            <td>@book.Category</td>
+                            <td>@book.Price</td>
+                            <td>
+                                <button type="button" class="trans-btn" @onclick="() => OnUpdate(book.Id)">Update</button>
+                                <button type="button" class="trans-btn" @onclick="() => OnDelete(book)">Delete</button>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -48,5 +46,22 @@
 </section>
 
 @code {
+    List<Book> Books = new List<Book>();
 
+    protected async override Task OnInitializedAsync()
+    {
+        Books = await BookService.GetAllBook();
+    }
+
+    private void OnUpdate(int Id)
+    {
+        NavManager.NavigateTo($"/admin/books/form/{Id}");
+    }
+
+    private async Task OnDelete(Book book)
+    {
+        var result = await BookService.DeleteBook(book);
+        Toast.ShowSuccess("Book Successfully Deleted", "Deleted");
+        Books = result;
+    }
 }

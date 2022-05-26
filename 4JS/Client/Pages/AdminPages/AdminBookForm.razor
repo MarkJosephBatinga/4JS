@@ -1,58 +1,119 @@
 ﻿@page "/admin/books/form"
+@page "/admin/books/form/{Id:int}"
 @layout AdminAuthLayout
+@inject IBookService BookService
+@inject IToastService Toast
+@inject NavigationManager NavManager
 
-    <section class="admin-body px-3 px-md-5 my-3">
-        <div class="top-container px-lg-5">
-            <h3 class="title-text text-center">Books</h3>
+
+<section class="admin-body px-3 px-md-5 my-3">
+    <div class="top-container px-lg-5">
+        <h3 class="title-text text-center">Books</h3>
+    </div>
+    <div class="lower-container mt-5">
+        <div class="form-box">
+            <EditForm Model="book" OnValidSubmit="OnSubmit">
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+                <h4 class="group-title">Book Cover</h4>
+                <div class="img-container row d-flex justify-content-center">
+                    <div class="col-3">
+                        <img src="@(book.BookImage == null ? "./css/images/book.png" : book.BookImage)" alt="" class="book-img">
+                    </div>
+                </div>
+                <div class="form-group row mb-4  d-flex flex-column align-items-center">
+                    <div class="col-6">
+                        <p class="form-label">Select Image</p>
+                        <ValidationMessage For="() => book.BookImage" />
+                        <InputFile type="file" OnChange="OnImgChange"
+                                   accept="image/x-png,image/gif,image/jpeg,image/avi,image/webp" name="product-image"
+                                   id="product-image" />
+                    </div>
+                </div>
+                <h4 class="group-title">Book Info</h4>
+                <div class="form-group row mb-4">
+                    <div class="col-6">
+                        <p class="form-label">Book Name</p>
+                        <ValidationMessage For="() => book.BookTitle" />
+                        <input type="text" name="" @bind-value="book.BookTitle" class="form-input">
+                    </div>
+                    <div class="col-6">
+                        <p class="form-label">Author</p>
+                        <ValidationMessage For="() => book.Author" />
+                        <input type="text" name="" @bind-value="book.Author" class="form-input">
+                    </div>
+                    <div class="col-6">
+                        <p class="form-label">Price</p>
+                        <ValidationMessage For="() => book.Price" />
+                        <input type="text" name="" @bind-value="book.Price" class="form-input">
+                    </div>
+                    <div class="col-6">
+                        <p class="form-label">Category</p>
+                        <ValidationMessage For="() => book.Category" />
+                        <InputSelect class="form-input" @bind-Value="book.Category">
+                            <option selected>Select Category</option>
+                            <option value="Action and Adventure">Action and Adventure</option>
+                            <option value="Classics">Classics</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Romance">Romance</option>
+                        </InputSelect>
+                    </div>
+                </div>
+                <div class="submit-box d-flex justify-content-end">
+                    <a href="/admin/books" type="button" class="cancel-btn mx-3">Cancel</a>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </div>
+            </EditForm>
         </div>
-        <div class="lower-container mt-5">
-            <div class="form-box">
-                <form action="">
-                    <h4 class="group-title">Book Cover</h4>
-                    <div class="img-container row d-flex justify-content-center">
-                        <div class="col-3">
-                            <img src="./css/images/book.png" alt="" class="book-img">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-4  d-flex flex-column align-items-center">
-                        <div class="col-6">
-                            <p class="form-label">Select Image</p>
-                            <input type="file" name="" class="form-input" id="">
-                        </div>
-                    </div>
-                    <h4 class="group-title">Book Info</h4>
-                    <div class="form-group row mb-4">
-                        <div class="col-6">
-                            <p class="form-label">Book Name</p>
-                            <input type="text" name="" placeholder="Alusiis" class="form-input">
-                        </div>
-                        <div class="col-6">
-                            <p class="form-label">Author</p>
-                            <input type="text" name="" placeholder="San Narciso" class="form-input">
-                        </div>
-                        <div class="col-6">
-                            <p class="form-label">Price</p>
-                            <input type="text" name="" placeholder="Zambales" class="form-input">
-                        </div>
-                        <div class="col-6">
-                            <p class="form-label">Category</p>
-                            <select name="" class="form-input">
-                                <option value="">Action and Adventure</option>
-                                <option value="">Classics</option>
-                                <option value="">Horror</option>
-                                <option value="">Romance</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="submit-box d-flex justify-content-end">
-                        <a href="" type="button" class="cancel-btn mx-3">Cancel</a>
-                        <button type="submit" class="submit-btn">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
 
-    @code {
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+    Book book = new Book();
 
+
+    protected async override Task OnInitializedAsync()
+    {
+        if(Id.HasValue)
+        {
+            book = await BookService.GetBook(Id.Value);
+        }
     }
+
+    private async Task OnSubmit()
+    {
+        if(Id.HasValue)
+        {
+            var result = await BookService.UpdateBook(book);
+            if (result != null)
+            {
+                Toast.ShowSuccess("Book Successfully Updated", "Book Updated");
+                NavManager.NavigateTo("/admin/books");
+            }
+        }
+        else
+        {
+            var result = await BookService.AddBook(book);
+            if (result != null)
+            {
+                Toast.ShowSuccess("Book Successfully Added", "Book Added");
+                NavManager.NavigateTo("/admin/books");
+            }
+        }
+    }
+
+    private async Task OnImgChange(InputFileChangeEventArgs e)
+    {
+        var format = e.File.ContentType;
+        long maxFileSize = 1024 * 1024 * 15;
+
+        var resizedImage = await e.File.RequestImageFileAsync(format, 600, 600);
+        var buffer = new byte[resizedImage.Size];
+        await resizedImage.OpenReadStream(maxFileSize).ReadAsync(buffer);
+        var imageData = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+        book.BookImage = imageData;
+        book.ImageName = e.File.Name;
+    }
+}
+    

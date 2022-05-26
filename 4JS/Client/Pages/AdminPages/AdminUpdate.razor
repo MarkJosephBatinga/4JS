@@ -1,0 +1,67 @@
+﻿@page "/admin/account/update"
+@layout AdminAuthLayout
+@attribute [Authorize(Roles = "admin")]
+@inject ILocalStorageService LocalStorage
+@inject ILoginService LoginService
+@inject IAdminService AdminService
+@inject NavigationManager NavManager
+@inject AuthenticationStateProvider Authentication
+@inject IToastService Toast
+
+<section class="main-body px-3 px-md-5 my-3 d-flex align-items-center">
+    <div class="login-container row">
+        <h3 class="login-title">Update Admin Account!</h3>
+        <div class="title-box col-xl d-flex flex-column justify-content-center align-items-center">
+
+            <img src="./css/images/updateacc.png" alt="Update" class="acc-img">
+        </div>
+        <div class=" col-xl d-flex justify-content-center align-items-center">
+            <div class="form-box d-flex flex-column">
+                <EditForm Model="admin" OnValidSubmit="OnUpdate">
+                    <DataAnnotationsValidator></DataAnnotationsValidator>
+                    <h3 class="form-title">Admin Info</h3>
+
+                    <p class="form-label">First Name</p>
+                    <ValidationMessage For="() => admin.FirstName" />
+                    <input class="form-input w-100" type="text" name="first_name" @bind-value="admin.FirstName" placeholder="first name">
+
+                    <p class="form-label">Last Name</p>
+                    <ValidationMessage For="() => admin.LastName" />
+                    <input class="form-input" type="text" name="last_name" @bind-value="admin.LastName" placeholder="last name">
+
+                    <p class="form-label">EMAIL</p>
+                    <ValidationMessage For="() => admin.email" />
+                    <input class="form-input" type="email" name="email" @bind-value="admin.email" placeholder="email">
+
+                    <p class="form-label">PASSWORD</p>
+                    <ValidationMessage For="() => admin.password" />
+                    <input class="form-input" type="password" name="password" @bind-value="admin.password" placeholder="password">
+
+                    <div class="submit-box d-flex justify-content-center">
+                        <button type="submit" class="trans-btn">Update</button>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    Admin admin = new Admin();
+
+    protected async override Task OnInitializedAsync()
+    {
+        var username = await LocalStorage.GetItemAsStringAsync("username");
+        admin = await LoginService.GetAdmin(username);
+    }
+
+    private async Task OnUpdate()
+    {
+        var result = await AdminService.UpdateAdmin(admin);
+        if (result != null)
+        {
+            Toast.ShowSuccess("Admin Update Successfull", "Success");
+            NavManager.NavigateTo("/admin/account");
+        }
+    }
+}

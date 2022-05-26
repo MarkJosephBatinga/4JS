@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32407.337
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4JS.Server", "4JS\Server\4JS.Server.csproj", "{BC433301-C186-47E5-B400-FB4245F3CE8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4JS.Server", "4JS\Server\4JS.Server.csproj", "{BC433301-C186-47E5-B400-FB4245F3CE8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4JS.Client", "4JS\Client\4JS.Client.csproj", "{F94D0550-E404-4CE0-86A3-A231763BA066}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4JS.Client", "4JS\Client\4JS.Client.csproj", "{F94D0550-E404-4CE0-86A3-A231763BA066}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4JS.Shared", "4JS\Shared\4JS.Shared.csproj", "{7394335C-3EB8-4713-9172-6BE1BEB24F71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4JS.Shared", "4JS\Shared\4JS.Shared.csproj", "{7394335C-3EB8-4713-9172-6BE1BEB24F71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
